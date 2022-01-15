@@ -4,9 +4,12 @@ import Analytics from '../../components/Analytics/analytics';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, addDoc, collection, updateDoc, setDoc, doc } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { companies } from "./constants";
+import Login from '../../components/Login/login';
+import useToken from '../../hooks/useToken';
+import AuthProvider from '../../components/AuthProvider/authProvider';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,26 +31,28 @@ function Home() {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = getFirestore();
+
   // try {
   // addDoc(collection(db, "revenue-dashboard"), { company: "Apple", country: "USA" });
   // setDoc(doc(db, "revenue-dashboard", "USA"), companies[0]);
   // companies.forEach(async (data) => {
-  //   const docRef = await addDoc(collection(db, "monthly-revenue"), data);
-  //   console.log("Document written with ID: ", docRef.id);
-  //   setDoc(doc(db, data.country, data.company), data);
-  // });
+  // const docRef = await addDoc(collection(db, "monthly-revenue"), data);
+  // console.log("Document written with ID: ", docRef.id);
+  //     setDoc(doc(db, "companies", data.company), data);
+  //   });
   // } catch (e) {
   //   console.error("Error adding document: ", e);
   // }
-  console.log("database", db);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element="" />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="analytics" element={<Analytics />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="analytics" element={<Analytics />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

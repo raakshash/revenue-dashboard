@@ -1,0 +1,33 @@
+.Login{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+    }
+  
+    .Login form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+  }
+
+
+
+.google {
+    background: #ea4335; 
+    margin: 10px;
+}
+.google:hover {
+    background: #e82e1e; }
+
+.facebook {
+    background: #3b5998;
+    margin: 10px;
+ }
+.facebook:hover {
+    background: #344e86; }

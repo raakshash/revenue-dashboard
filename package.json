@@ -14,6 +14,7 @@
     "firebase": "^9.4.1",
     "firebase-admin": "^10.0.1",
     "react": "^16",
+    "react-bootstrap": "^2.1.1",
     "react-dom": "^16",
     "react-ga": "^3.3.0",
     "react-router-dom": "^6.2.1",
