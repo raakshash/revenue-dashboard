@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import Home from './pages/Home/home';
 
-const init = () => {
-  
+
+const init = () => {  
   ReactDOM.render(
     <React.StrictMode>
       <Home />

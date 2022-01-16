@@ -210,7 +210,7 @@ export const companies = [
         }
     },
     {
-        company: "Tata", country: "Sweden ", revenue: {
+        company: "Tata", country: "Sweden", revenue: {
             jan: 17491,
             feb: 10095391,
             mar: 1357035,

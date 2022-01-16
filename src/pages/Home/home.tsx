@@ -1,15 +1,18 @@
 import React from 'react';
-import Dashboard from '../Dashboard/dashboard';
-import Analytics from '../../components/Analytics/analytics';
+import Dashboard from '../DashboardPage/DashboardPage';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Provider as ReduxProvider } from "react-redux";
+import { StoreContext } from "redux-react-hook";
+import { combineReducers, createStore } from "redux";
+import Login from '../../components/Login/Login';
+import useToken from '../../hooks/useToken';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, addDoc, collection, updateDoc, setDoc, doc } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
-import { companies } from "./constants";
-import Login from '../../components/Login/login';
-import useToken from '../../hooks/useToken';
-import AuthProvider from '../../components/AuthProvider/authProvider';
+// import { getAnalytics } from "firebase/analytics";
+import { RevenueReducer } from '../../reducers/revenueReducer';
+import Logout from '../../components/Logout/Logout';
+import { AuthProvider } from "../../components/Auth/Auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,33 +29,30 @@ const firebaseConfig = {
 };
 
 
+
 function Home() {
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore();
+  initializeApp(firebaseConfig);
 
-  // try {
-  // addDoc(collection(db, "revenue-dashboard"), { company: "Apple", country: "USA" });
-  // setDoc(doc(db, "revenue-dashboard", "USA"), companies[0]);
-  // companies.forEach(async (data) => {
-  // const docRef = await addDoc(collection(db, "monthly-revenue"), data);
-  // console.log("Document written with ID: ", docRef.id);
-  //     setDoc(doc(db, "companies", data.company), data);
-  //   });
-  // } catch (e) {
-  //   console.error("Error adding document: ", e);
-  // }
+  const { token, setToken } = useToken();
+  const store = createStore(
+    combineReducers({ revenue: RevenueReducer })
+  )
 
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="analytics" element={<Analytics />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+    <ReduxProvider store={store}>
+      <StoreContext.Provider value={store}>
+        <AuthProvider value={{ token }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Login setToken={setToken} />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="logout" element={<Logout />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </StoreContext.Provider>
+    </ReduxProvider>
   );
 }
 
