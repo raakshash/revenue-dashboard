@@ -25,15 +25,17 @@ interface Props {
   totalYearRevenue?: number;
   highestRevenueCompany?: string;
   highestRevenueCountry?: string;
+  handleLogout: (event: any) => void;
 }
 
-const DashboardPage: React.FC<Props> = (props) => {
+const Dashboard: React.FC<Props> = (props) => {
   const {
     barChartData,
     lineChartData,
     totalYearRevenue,
     highestRevenueCompany,
-    highestRevenueCountry
+    highestRevenueCountry,
+    handleLogout
   } = props;
 
   const primaryColor: any = getColor('primary');
@@ -53,6 +55,7 @@ const DashboardPage: React.FC<Props> = (props) => {
       className="DashboardPage"
       title="Revenue Dashboard"
       breadcrumbs={[{ name: 'Dashboard', active: true }]}
+      handleLogout={handleLogout}
     >
 
       <Row>
@@ -85,7 +88,7 @@ const DashboardPage: React.FC<Props> = (props) => {
               </ListGroupItem>
               <ListGroupItem>
                 <MdPieChart size={25} color={primaryColor} /> Highest Revenue country
-                 <Badge color="secondary">{highestRevenueCountry}</Badge>
+                <Badge color="secondary">{highestRevenueCountry}</Badge>
               </ListGroupItem>
             </ListGroup>
           </Card>
@@ -95,4 +98,4 @@ const DashboardPage: React.FC<Props> = (props) => {
   );
 }
 
-export default DashboardPage;
+export default Dashboard;

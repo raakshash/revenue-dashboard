@@ -1,6 +1,6 @@
 import React from 'react';
 import bn from '../../utils/bemnames';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Navbar } from 'reactstrap';
 import Typography from '../Typography/Typography';
 
 const bem = bn.create('page');
@@ -13,7 +13,8 @@ interface Props {
   breadcrumbs?: {
     name: string,
     active: boolean,
-  }[],
+  }[];
+  handleLogout: (event: any) => void;
 }
 
 const Page: React.FC<Props> = ({
@@ -22,20 +23,15 @@ const Page: React.FC<Props> = ({
   children,
   tag: Tag = 'div',
   title = '',
+  handleLogout,
   ...restProps
 }) => {
   const classes = bem.b('px-3', className);
 
   return (
     <Tag className={classes} {...restProps}>
+
       <div className={bem.e('header')}>
-        {title && typeof title === 'string' ? (
-          <Typography type="h1" className={bem.e('title')}>
-            {title}
-          </Typography>
-        ) : (
-          title
-        )}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
             <BreadcrumbItem>Home</BreadcrumbItem>
@@ -47,6 +43,18 @@ const Page: React.FC<Props> = ({
               ))}
           </Breadcrumb>
         )}
+        <Navbar>
+          {title && typeof title === 'string' ? (
+            <Typography type="h1" className={bem.e('title')}>
+              {title}
+            </Typography>
+          ) : (
+            title
+          )}
+          <Button style={{ float: "right" }} onClick={handleLogout}>
+            Logout
+          </Button>
+        </Navbar>
       </div>
       {children}
     </Tag>

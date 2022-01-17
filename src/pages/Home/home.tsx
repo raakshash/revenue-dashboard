@@ -18,19 +18,29 @@ import { AuthProvider } from "../../components/Auth/Auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCZsAI3-piwmT_caZrDuO9cgP_-7MxpYqw",
+//   authDomain: "revenue-dashboard-d407a.firebaseapp.com",
+//   projectId: "revenue-dashboard-d407a",
+//   storageBucket: "revenue-dashboard-d407a.appspot.com",
+//   messagingSenderId: "600260579595",
+//   appId: "1:600260579595:web:0a1543e8bbda64d8cfd20e",
+//   measurementId: "G-GJGSVNL18J"
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCZsAI3-piwmT_caZrDuO9cgP_-7MxpYqw",
-  authDomain: "revenue-dashboard-d407a.firebaseapp.com",
-  projectId: "revenue-dashboard-d407a",
-  storageBucket: "revenue-dashboard-d407a.appspot.com",
-  messagingSenderId: "600260579595",
-  appId: "1:600260579595:web:0a1543e8bbda64d8cfd20e",
-  measurementId: "G-GJGSVNL18J"
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId
 };
 
 
 
-function Home() {
+const Home: React.FC = () => {
   // Initialize Firebase
   initializeApp(firebaseConfig);
 
@@ -46,7 +56,7 @@ function Home() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login setToken={setToken} />} />
-              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dashboard" element={<Dashboard setToken={setToken} />} />
               <Route path="logout" element={<Logout />} />
             </Routes>
           </BrowserRouter>
