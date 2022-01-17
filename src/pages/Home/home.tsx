@@ -6,39 +6,11 @@ import { StoreContext } from "redux-react-hook";
 import { combineReducers, createStore } from "redux";
 import Login from '../../components/Login/Login';
 import useToken from '../../hooks/useToken';
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
 import { RevenueReducer } from '../../reducers/revenueReducer';
 import Logout from '../../components/Logout/Logout';
 import { AuthProvider } from "../../components/Auth/Auth";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCZsAI3-piwmT_caZrDuO9cgP_-7MxpYqw",
-//   authDomain: "revenue-dashboard-d407a.firebaseapp.com",
-//   projectId: "revenue-dashboard-d407a",
-//   storageBucket: "revenue-dashboard-d407a.appspot.com",
-//   messagingSenderId: "600260579595",
-//   appId: "1:600260579595:web:0a1543e8bbda64d8cfd20e",
-//   measurementId: "G-GJGSVNL18J"
-// };
-
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId
-};
-
-
+import { firebaseConfig } from "../../config/config";
 
 const Home: React.FC = () => {
   // Initialize Firebase
