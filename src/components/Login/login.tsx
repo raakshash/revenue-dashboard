@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button, Label } from "reactstrap";
 import "./login.css";
 import { AuthConsumer } from "../Auth/Auth";
 import { useProvideAuth } from "../../hooks/useProvideAuth";
@@ -29,6 +29,7 @@ const Login: React.FC<Props> = ({ setToken }) => {
                 < div className="card">
                     < div className="card-body" >
                         <div className="wrap">
+                            <h2>Welcome to Dashboard</h2>
                             <Button
                                 size="lg"
                                 type="submit"
