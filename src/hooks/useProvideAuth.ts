@@ -5,8 +5,8 @@ export const useProvideAuth = (
     setToken: (value: string | null) => void
 ) => {
     const navigate = useNavigate();
-    const auth = getAuth();
     const signin = async () => {
+        const auth = getAuth();
         const provider = new GoogleAuthProvider();
         await signInWithPopup(auth, provider)
             .then(async (result) => {
@@ -20,6 +20,7 @@ export const useProvideAuth = (
     }
 
     const signout = async () => {
+        const auth = getAuth();
         await signOut(auth)
             .then(() => {
                 setToken(null);
