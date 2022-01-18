@@ -19,11 +19,12 @@
 
 
 .google {
-    background: #ea4335; 
+    background: #cc7870; 
     margin: 10px;
+    border-color: none;
 }
 .google:hover {
-    background: #e82e1e; }
+    background: #fda59d; }
 
 .facebook {
     background: #3b5998;

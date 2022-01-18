@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar, ChartData, Line } from 'react-chartjs-2';
 import Page from './Page';
 import {
   MdInsertChart,
@@ -18,6 +18,7 @@ import {
 } from 'reactstrap';
 import { BarChartData, LineChartData } from '../../pages/DashboardPage/constants';
 import { getColor } from "../../utils/colors";
+// import * as chartjs from "chart.js";
 
 interface Props {
   lineChartData?: LineChartData;
@@ -40,6 +41,10 @@ const Dashboard: React.FC<Props> = (props) => {
 
   const primaryColor: any = getColor('primary');
 
+  // const defaultChartData: ChartData<chartjs.ChartData> = {
+  //   labels: [],
+  //   datasets: []
+  // };
   const {
     data: barData = {},
     options: barOptions
